@@ -46,7 +46,6 @@ def dice_throw(game_data_table, curent_player):
     return game_data_table, dice
 
 def user_option(dice, game_data_table, curent_player):
-    number_of_options = 0
     posible_option = []
     print('Posibile option:')
     
@@ -78,10 +77,43 @@ def user_option(dice, game_data_table, curent_player):
             case 19: print(f'19| Chance          |{gf.chance(dice):^2}')
             case 20: print(f'20| Maxi-Yatzy      |{gf.maxi_yatzy(dice):^2}')
 
+    #let user chose
+    user_choice = np.nan
+    while user_choice not in posible_option:
+        try:
+            user_choice = int(input('Please input one of the above option:'))
+            if user_choice not in posible_option:
+                print('Only numbers in the lit above.')
+            else: break
+        except:
+            print('only numbers that are in the list above')
+            break
     
+    match user_choice:
+        case 1: game_data_table[curent_player,0] = gf.upper_one(dice)
+        case 2: game_data_table[curent_player,1] = gf.upper_two(dice)
+        case 3: game_data_table[curent_player,2] = gf.upper_three(dice)
+        case 4: game_data_table[curent_player,3] = gf.upper_four(dice)
+        case 5: game_data_table[curent_player,4] = gf.upper_five(dice)
+        case 6: game_data_table[curent_player,5] = gf.upper_six(dice)
+        case 7: game_data_table[curent_player,6] = gf.one_pair(dice)
+        case 8: game_data_table[curent_player,7] = gf.two_pairs(dice)
+        case 9: game_data_table[curent_player,8] = gf.three_pairs(dice)
+        case 10:game_data_table[curent_player,9] = gf.three_of_kind(dice)
+        case 11:game_data_table[curent_player,10] = gf.four_of_kind(dice)
+        case 12:game_data_table[curent_player,11] = gf.five_of_kind(dice)
+        case 13:game_data_table[curent_player,12] = gf.small_straight(dice)
+        case 14:game_data_table[curent_player,13] = gf.big_straight(dice)
+        case 15:game_data_table[curent_player,14] = gf.full_straight(dice)
+        case 16:game_data_table[curent_player,15] = gf.villa(dice)
+        case 17:game_data_table[curent_player,16] = gf.full_house(dice)
+        case 18:game_data_table[curent_player,17] = gf.tower(dice)
+        case 19:game_data_table[curent_player,18] = gf.chance(dice)
+        case 20:game_data_table[curent_player,19] = gf.maxi_yatzy(dice)
 
 def main():
     game_data_table = start_up()
+    
     while np.isnan(game_data_table).any() == True:
         break
 

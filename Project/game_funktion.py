@@ -1,7 +1,7 @@
 import numpy as np
 from collections import Counter
 
-lst = [3, 3, 3, 3, 3, 3]
+lst = [1, 6, 5, 4, 3, 3]
 arr = np.array(lst)
 
 def upper_one(lst):
@@ -106,21 +106,21 @@ def six_of_kind(lst): #returns not the points
 
 def small_straight(lst): #returns not the points
     if all(num in lst for num in range(1, 6)):
-        return [1, 2, 3, 4, 5]
+        return 15
     else:
-        return None
+        return 0
 
 def big_straight(lst):
     if all(num in lst for num in range(2, 7)):
-        return [2, 3, 4, 5, 6]
+        return 20
     else:
-        return None
+        return 0
 
 def full_straight(lst):
     if all(num in lst for num in range(1, 7)):
-        return [1, 2, 3, 4, 5, 6]
+        return 21
     else:
-        return None
+        return 0
  
     
 def full_house(lst):
@@ -143,7 +143,13 @@ def tower(lst):
         return None
 
 def villa(lst):
+    if lst[0] == lst[1] == lst[2]:
+        if lst[3] == lst[4] == lst[5]:
+            return sum(lst)
     return 0
+
+def chance(lst):
+    return sum(lst)
 
 def maxi_yatzy(lst):
     amount = Counter(lst)
