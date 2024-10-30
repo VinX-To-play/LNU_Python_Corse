@@ -1,5 +1,5 @@
-import numpy as np
 from collections import Counter
+# Spoke with Daniel wich is why we looked in to the libary. 
 # Counter class is a special type of object data-set provided with the collections module in Python3
 # reference from https://www.geeksforgeeks.org/python-counter-objects-elements/
 # A Counter is a subclass of dict. Therefore it is an unordered collection where elements and their respective count are stored as a dictionary. This is equivalent to a bag or multiset of other languages.
@@ -54,13 +54,17 @@ def n_Pairs(lst):
     pairs = sum(count // 2 for count in amount.values()) 
     return pairs
 
+
 def one_pair(lst):
+    # creats a dictunary where the key is the number on the dice and the value is the amount of acurences 
     amount = Counter(lst)
-    pairs = [i for i, count in amount.items() if count == 2]
+    # creats a list where each objekt is only containd tow times
+    pairs = [i for i, count in amount.items() if count == 2] 
     if len(pairs) == 1:
         return sum(pairs) * 2
     else:
         return 0
+
 
 def two_pairs(lst):
     amount = Counter(lst)

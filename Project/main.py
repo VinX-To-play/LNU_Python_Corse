@@ -9,8 +9,6 @@ def start_up():
         highscore_file = np.load('highscore.npy')
         if type(highscore_file) != np.ndarray: raise #check if data in the npz ir ndtable
         vis.highscore(highscore_file)
-        highscore_file.sort()
-        vis.highscore(highscore_file)
         del highscore_file
     except:
         print('No Highscore avalibil')
@@ -75,10 +73,11 @@ def user_option(dice, game_data_table, curent_player):
     posible_option = []
     print('Posibile option:')
     
-    #if there is no option to chose    
+    #add free cells to possible options
     for cell in range(20):
         if np.isnan(game_data_table[curent_player,cell]) == True: posible_option.append(cell + 1)
 
+    # display all chusebill options with there respeted score
     for option in posible_option:
         match option:
             case 1:  print(f' 1| Ones            | {gf.upper_one(dice):^2}')
@@ -113,7 +112,7 @@ def user_option(dice, game_data_table, curent_player):
         except:
             print('only numbers that are in the list above')
 
-    
+    #add the chusen opption to the nd-array
     match user_choice:
         case 1: game_data_table[curent_player,0] = gf.upper_one(dice)
         case 2: game_data_table[curent_player,1] = gf.upper_two(dice)
@@ -150,7 +149,7 @@ def end_of_game(game_data_table , max_player):
 def calculate_highscore(game_data_table, max_player):
     try:
         highscore_file = np.load('highscore.npy')
-        if type(highscore_file) != np.ndarray: raise #check if data in the npz ir ndtable
+        if type(highscore_file) != np.ndarray: raise #check if data in the npz is a ndtable
     except:
         highscore_file = np.array([[161, 'Dev 1'],[184, 'Dev 2']])
 
