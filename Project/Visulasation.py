@@ -13,4 +13,15 @@ def print_dice(dice):
     print('\n','-' * 40)
     print('Dice value: ',end='')
     for e in dice:
-        print(f'{e:^4}|',end='')  
+        print(f'{e:^4}|',end='')
+
+def end_score(table, max_player):
+    for player in range(max_player):
+        print(f'End score Player {player + 1} : {sum(table[player,:])}')
+
+def highscore(table):
+    print('Highscore:')
+    if table.shape[0] < 10: length_to_show = table.shape[0]
+    else: length_to_show = 10
+    for i in range(length_to_show):
+        print(f'{(i + 1):^2} | {table[i, 0]:^3} Points | {table[i, 1]}')

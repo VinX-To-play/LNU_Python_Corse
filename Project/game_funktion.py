@@ -1,8 +1,10 @@
 import numpy as np
 from collections import Counter
+# Counter class is a special type of object data-set provided with the collections module in Python3
+# reference from https://www.geeksforgeeks.org/python-counter-objects-elements/
+# A Counter is a subclass of dict. Therefore it is an unordered collection where elements and their respective count are stored as a dictionary. This is equivalent to a bag or multiset of other languages.
+# reference for max-yatzy points https://www.holdson.com/images/uploaded/MaxiYatzy_rules_UK.pdf
 
-lst = [1, 6, 5, 4, 3, 3]
-arr = np.array(lst)
 
 def upper_one(lst):
     sum_ones = 0
@@ -49,62 +51,55 @@ def upper_six(lst):
 # Finds the number of pairs
 def n_Pairs(lst):
     amount = Counter(lst)
-    pairs = sum(count // 2 for count in amount.values())  # Count all pairs
+    pairs = sum(count // 2 for count in amount.values()) 
     return pairs
 
 def one_pair(lst):
     amount = Counter(lst)
     pairs = [i for i, count in amount.items() if count == 2]
     if len(pairs) == 1:
-        return pairs[0]
+        return sum(pairs) * 2
     else:
-        return None
+        return 0
 
 def two_pairs(lst):
     amount = Counter(lst)
     pairs = [i for i, count in amount.items() if count == 2]
     if len(pairs) == 2:
-        return pairs
+        return sum(pairs) * 2
     else:
-        return None
+        return 0
 
 def three_pairs(lst):
     amount = Counter(lst)
     pairs = [i for i, count in amount.items() if count == 2]
     if len(pairs) == 3:
-        return pairs
+        return sum(pairs) * 2
     else:
-        return None
+        return 0
 
 def three_of_kind(lst):
     amount = Counter(lst)
     for num, count in amount.items():
         if count == 3:
-            return num
-    return None
+            return num * 3
+    return 0
 
 def four_of_kind(lst):
     amount = Counter(lst)
     for num, count in amount.items():
         if count == 4:
-            return num
-    return None
+            return num * 4
+    return 0
 
 def five_of_kind(lst):
     amount = Counter(lst)
     for num, count in amount.items():
         if count == 5:
-            return num
-    return None
+            return num * 5
+    return 0
 
-def six_of_kind(lst): #returns not the points 
-    amount = Counter(lst)
-    for num, count in amount.items():
-        if count == 6:
-            return num
-    return None
-
-def small_straight(lst): #returns not the points
+def small_straight(lst): 
     if all(num in lst for num in range(1, 6)):
         return 15
     else:
@@ -128,9 +123,9 @@ def full_house(lst):
     three_kind = three_of_kind(lst)
     
     if pair and three_kind:
-        return pair, three_kind
+        return pair + three_kind
     else:
-        return None
+        return 0
     
   
 def tower(lst):
@@ -138,9 +133,9 @@ def tower(lst):
     four_kind = four_of_kind(lst)
     
     if pair and four_kind:
-        return pair, four_kind
+        return pair + four_kind
     else:
-        return None
+        return 0
 
 def villa(lst):
     if lst[0] == lst[1] == lst[2]:
@@ -155,26 +150,5 @@ def maxi_yatzy(lst):
     amount = Counter(lst)
     for num, count in amount.items():
         if count == 6:
-            return num
-    return None
-
-print(f"Sum of ones: {upper_one(lst)}")
-print(f"Sum of twos: {upper_two(lst)}")
-print(f"Sum of threes: {upper_three(lst)}")
-print(f"Sum of fours: {upper_four(lst)}")
-print(f"Sum of fives: {upper_five(lst)}")
-print(f"Sum of sixes: {upper_six(lst)}")
-print(f"Number of pairs: {n_Pairs(lst)}")
-print(f"One pair: {one_pair(lst)}")
-print(f"Two pairs: {two_pairs(lst)}")
-print(f"Three pairs: {three_pairs(lst)}")
-print(f"Three of a Kind: {three_of_kind(lst)}")
-print(f"Four of a Kind: {four_of_kind(lst)}")
-print(f"Five of a Kind: {five_of_kind(lst)}")
-print(f"Six of a Kind: {six_of_kind(lst)}")
-print(f"Small Straight: {small_straight(lst)}")
-print(f"big Straight: {big_straight(lst)}")
-print(f"full Straight: {full_straight(lst)}")
-print(f"full House: {full_house(lst)}")
-print(f"tower: {tower(lst)}")
-print(f"max yatzy: {maxi_yatzy(lst)}")
+            return num * 6
+    return 0
