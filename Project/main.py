@@ -62,9 +62,12 @@ def dice_throw(game_data_table, curent_player):
                         rerole_dice_list = []
                 else:
                     print('only Integers 0 -> 6 are valid')
+        
         except ValueError:
             print("only numbers valid")
 
+        if len(rerole_dice_list) == 0 and user_input == 0:
+            break 
 
     game_data_table[curent_player,20] = user_throw
     return game_data_table, dice
