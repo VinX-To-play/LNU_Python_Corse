@@ -48,13 +48,6 @@ def upper_six(lst):
             sum_sixes += 6
     return sum_sixes
 
-# Finds the number of pairs
-def n_Pairs(lst):
-    amount = Counter(lst)
-    pairs = sum(count // 2 for count in amount.values()) 
-    return pairs
-
-
 def one_pair(lst):
     # creats a dictunary where the key is the number on the dice and the value is the amount of acurences 
     amount = Counter(lst)
@@ -83,22 +76,24 @@ def three_pairs(lst):
         return 0
 
 def three_of_kind(lst):
+    lst = lst[::-1]
     amount = Counter(lst)
-    for num, count in amount.items():
+    for num, count in amount.items(): # num = key | count is the item
         if count == 3:
             return num * 3
     return 0
 
+
 def four_of_kind(lst):
     amount = Counter(lst)
-    for num, count in amount.items():
+    for num, count in amount.items(): # num = key | count is the item
         if count == 4:
             return num * 4
     return 0
 
 def five_of_kind(lst):
     amount = Counter(lst)
-    for num, count in amount.items():
+    for num, count in amount.items(): # num = key | count is the item
         if count == 5:
             return num * 5
     return 0

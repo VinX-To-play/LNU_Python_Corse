@@ -23,10 +23,10 @@ def start_up():
             print('only numbers above 0 are posible.')
             max_player = np.nan
             
-    game_data_table = np.empty((max_player,21))
-    game_data_table[:] = np.nan
-    np.nan_to_num(game_data_table[0:,20],copy = False)
-    curent_player = 0
+    game_data_table = np.empty((max_player,21)) #create empty n * 21 table
+    game_data_table[:] = np.nan #fill with nan 
+    np.nan_to_num(game_data_table[0:,20],copy = False) #replace the 20 collum to 0
+    curent_player = 0 
     
     
     return game_data_table, curent_player, max_player     
@@ -61,6 +61,7 @@ def dice_throw(game_data_table, curent_player):
                         user_throw -= 1
                         rerole_dice_list = []
                 else:
+                    #errorhandl if it is a number but not a valid one
                     print('only Integers 0 -> 6 are valid')
         
         except ValueError:
@@ -179,7 +180,9 @@ def main():
             vis.draw_table(game_data_table)
             game_data_table, dice = dice_throw(game_data_table, curent_player)
             user_option(dice, game_data_table, curent_player)
+            #go to the next player
             curent_player += 1
+            #reset the players to not go out of bounds
             if curent_player == max_player: curent_player = 0
 
     game_data_table = end_of_game(game_data_table, max_player)
